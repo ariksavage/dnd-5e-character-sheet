@@ -1,0 +1,230 @@
+%horizontal-input {
+  width: 20vw;
+  display: flex;
+  align-items: center;
+  margin: 0 0 1em;
+  .input {
+    flex: 0 1 3em;
+    height: 3em;
+    border: 3px solid #000;
+    appearance: none;
+    background: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+  }
+  .label {
+    flex: 1 0 60%;
+    padding: .2em 2em;
+    text-align: center;
+    border: 1px double #000;
+    border-style: double;
+    margin-left: -1em;
+  }
+}
+.inspiration {
+  @extend %horizontal-input;
+}
+.proficiency {
+  @extend %horizontal-input;
+
+  .input {
+    border-radius: 100%;
+  }
+}
+
+.block-title {
+  text-align: center;
+  font-variant: small-caps;
+  margin: 1em 0 0;
+}
+textarea {
+  width: 100%;
+  border: none;
+  appearance: none;
+}
+.sheet-main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-bottom: 1em;
+}
+.column {
+  flex: 1 0 20%;
+  max-width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 1em;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1em;
+}
+.block {
+  padding: 1em;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 1em 0;
+
+  &.filigre {
+    position: relative;
+    &:before {
+      z-index: -1;
+      content: '';
+      position: absolute;
+      height: 104%;
+      width: 70%;
+      top: -2%;
+      left: -2%;
+      background: url('/img/filigre-left.svg');
+      background-size: auto 100%;
+      background-repeat: no-repeat;
+      background-position: top left;
+    }
+    &:after {
+      z-index: -1;
+      content: '';
+      position: absolute;
+      height: 104%;
+      width: 70%;
+      top: -2%;
+      right: -2%;
+      background: url('/img/filigre-right.svg');
+      background-size: auto 100%;
+      background-repeat: no-repeat;
+      background-position: top right;
+    }
+  }
+}
+.dot {
+  font-size: 1em;
+
+  &.inline {
+    display: inline-block;
+    +.inline {
+      margin-left: 1ex;
+    }
+  }
+  .check {
+    display: none;
+    &:checked {
+      + .bubble {
+        background: #000;
+      }
+    }
+  }
+  .bubble {
+    display: inline-block;
+    margin: .5em;
+    height: .5em;
+    width: .5em;
+    border-radius: 100%;
+    border: 1px solid #000;
+  }
+  &.expertise {
+    .bubble {
+      border: 1px solid #fff;
+      position: relative;
+      &:after {
+
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        z-index: -1;
+        height: calc(.5em + 4px);
+        width: calc(.5em + 4px);
+        border-radius: 100%;
+        background: #000;
+      }
+    }
+  }
+}
+%skill-stat-row {
+  vertical-align: middle;
+
+  &:nth-of-type(even){
+    background: rgba(0,0,0,.1);
+  }
+  .dot {
+    width: 10%;
+    text-align: center;
+  }
+  .value {
+    text-align: center;
+    width: 20%;
+    border-bottom: 1px solid #000;
+  }
+  .name {
+    width: 70%;
+    padding: 0 1em;
+    text-transform: uppercase;
+  }
+}
+.saving-throw {
+  @extend %skill-stat-row;
+}
+.skill {
+  @extend %skill-stat-row;
+
+  .skill-stat {
+    color: #777;
+  }
+}
+.armor-class {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    background-image: url('/img/ac-frame.svg');
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
+  }
+}
+.initiative {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    background-image: url('/img/square-filigre.svg');
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
+  }
+}
+.speed {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    background-image: url('/img/square-filigre.svg');
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "dnd-sheet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ariksavage/dnd-5e-character-sheet.git"
+  },
+  "author": "Arik Savage",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ariksavage/dnd-5e-character-sheet/issues"
+  },
+  "homepage": "https://github.com/ariksavage/dnd-5e-character-sheet#readme",
+  "dependencies": {
+    "angular": "^1.7.9",
+    "angular-route": "^1.7.9",
+    "gulp-devops": "file:gulp"
+  }
+}

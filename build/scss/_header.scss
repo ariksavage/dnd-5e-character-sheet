@@ -1,0 +1,42 @@
+.sheet-header {
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/img/header-bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .character-name {
+    flex: 0 1 35%;
+    justify-content: center;
+    margin: 2% 2% 0 6%;
+    .input {
+      font-size: 2em;
+      border: none;
+      margin-top: .5em;
+    }
+    .label {
+      position: relative;
+      top: 2em;
+      left: 4.5em;
+    }
+  }
+
+  .character-data {
+    flex: 1 0 50%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 5em 3% 3em 2%;
+    padding-right: 1em;
+
+    .input-group {
+      flex: 1 0 20%;
+      margin: 0 1ex 1ex 0;
+      width: 20%;
+    }
+  }
+}
