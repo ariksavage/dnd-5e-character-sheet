@@ -63,6 +63,11 @@
       });
       return dice;
     }
+    service.armorClass = function(){
+      const dex = service.stat('dex').bonus;
+      let base = 10; // or armor worn;
+      return dex + base;
+    }
 
     service.load = function(id) {
       return api.get('character', 'get', id).then(

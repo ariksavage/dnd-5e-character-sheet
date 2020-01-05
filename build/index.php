@@ -62,7 +62,7 @@
     </div>
     <div class="column">
       <div class="row">
-        <input-group class="inline armor-class" value="char.armor" label="Armor Class"></input-group>
+        <input-group class="inline armor-class" value="char.armorClass()" label="Armor Class"></input-group>
         <input-group class="inline initiative" value="char.initiative" label="Initiative"></input-group>
         <input-group class="inline speed" value="char.race.speed" label="Speed"></input-group>
       </div>
@@ -74,36 +74,36 @@
         </div>
       </div>
       <div class="block filigre hit-dice">
-        <p>Total: {{char.hp.max}}</p>
+        <p>Total: {{char.hp_max}}</p>
         <p>{{char.hitDice()}}</p>
         <h4 class="block-title">Hit Dice</h4>
       </div>
       <div class="block filigre death-saves">
         <p>Successes: 
           <div class="inline dot">
-            <input class="check" type="checkbox" ng-checked="char.deathSaves.success > 0"/>
+            <input class="check" type="checkbox" ng-checked="char.death_save_success > 0"/>
             <span class="bubble"></span>
           </div>
           <div class="inline dot">
-            <input class="check" type="checkbox" ng-checked="char.deathSaves.success > 1"/>
+            <input class="check" type="checkbox" ng-checked="char.death_save_success > 1"/>
             <span class="bubble"></span>
           </div>
           <div class="inline dot">
-            <input class="check" type="checkbox" ng-checked="char.deathSaves.success > 2"/>
+            <input class="check" type="checkbox" ng-checked="char.death_save_success > 2"/>
             <span class="bubble"></span>
           </div>
         </p>
         <p>Failures: 
           <div class="inline dot">
-            <input class="check" type="checkbox" ng-checked="char.deathSaves.failure > 0"/>
+            <input class="check" type="checkbox" ng-checked="char.death_save_failure > 0"/>
             <span class="bubble"></span>
           </div>
           <div class="inline dot">
-            <input class="check" type="checkbox" ng-checked="char.deathSaves.failure > 1"/>
+            <input class="check" type="checkbox" ng-checked="char.death_save_failure > 1"/>
             <span class="bubble"></span>
           </div>
           <div class="inline dot">
-            <input class="check" type="checkbox" ng-checked="char.deathSaves.failure > 2"/>
+            <input class="check" type="checkbox" ng-checked="char.death_save_failure > 2"/>
             <span class="bubble"></span>
           </div>
         </p>
