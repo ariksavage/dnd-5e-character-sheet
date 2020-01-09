@@ -4,6 +4,7 @@
   function sheetController($scope, $location, character) {
     $scope.char = character;
     character.load(1);
+    //test
     $scope.stats = [
       'Charisma',
       'Constitution',

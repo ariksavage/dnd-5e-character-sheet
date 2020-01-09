@@ -1,16 +1,17 @@
 .input-group {
   .input {
-    width: 100%;
     float: left;
-    apperance: none;
-    border: none;
-    border-bottom: 1px solid #000;
+    appearance: none;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid $color--black;
     background: transparent;
   }
+
   .label {
+    float: left;
     width: 100%;
     font-size: .8em;
-    float: left;
     text-transform: uppercase;
   }
 
@@ -20,14 +21,15 @@
     text-align: center;
 
     .label {
-      font-size: .5em;
       margin-top: .5em;
+      font-size: .5em;
       text-align: center;
     }
+
     .input {
-      font-size: 2em;
       padding: .8em 0;
-      border: none;
+      border: 0;
+      font-size: 2em;
       text-align: center;
     }
   }

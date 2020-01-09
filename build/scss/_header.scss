@@ -1,23 +1,25 @@
 .sheet-header {
-  width: 100%;
   display: flex;
-  align-content: center;
   justify-content: center;
   align-items: center;
+  align-content: center;
+  width: 100%;
   background-image: url('/img/header-bg.svg');
-  background-size: cover;
-  background-position: center;
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 
   .character-name {
     flex: 0 1 35%;
     justify-content: center;
     margin: 2% 2% 0 6%;
+
     .input {
-      font-size: 2em;
-      border: none;
       margin-top: .5em;
+      border: 0;
+      font-size: 2em;
     }
+
     .label {
       position: relative;
       top: 2em;
@@ -26,17 +28,17 @@
   }
 
   .character-data {
-    flex: 1 0 50%;
     display: flex;
+    flex: 1 0 50%;
     flex-wrap: wrap;
     flex-direction: row;
-    margin: 5em 3% 3em 2%;
     padding-right: 1em;
+    margin: 5em 3% 3em 2%;
 
     .input-group {
       flex: 1 0 20%;
-      margin: 0 1ex 1ex 0;
       width: 20%;
+      margin: 0 1ex 1ex 0;
     }
   }
 }

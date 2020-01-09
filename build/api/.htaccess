@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# rewrite /type/action/ to index.php?type=$1&action=$2
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/([^/]+/?)$ index.php?type=$1&action=$2 [L]
+
+# rewrite /type/action/param to index.php?type=$1&action=$2&param=$3
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)$ index.php?type=$1&action=$2&param=$3 [L]
+
+

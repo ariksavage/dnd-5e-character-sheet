@@ -1,5 +1,7 @@
+@import 'global/colors';
+@import 'global/basics';
 @import '../stats/stat';
 @import '../input-group/input-group';
 @import '../sheet/sheet';
 
-@import 'header.scss'
+@import 'header';

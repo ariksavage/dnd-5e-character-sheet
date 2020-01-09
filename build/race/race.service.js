@@ -6,7 +6,6 @@
     service.load = function(id){
       return api.get('race', 'get', id).then(
       response => {
-        console.log('race load', response);
         const race = response.data;
         angular.merge(service, race);
       }

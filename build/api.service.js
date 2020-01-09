@@ -9,7 +9,6 @@
       if (param){
         url += '/'+param;
       }
-      console.log('get', url);
       const promise = $http.get(url).then(
         success => {
           return success;

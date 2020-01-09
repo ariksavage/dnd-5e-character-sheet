@@ -4,6 +4,16 @@
   <base href="/">
   <title>D&D 5e Sheet</title>
   <link rel="stylesheet" href="/css/main.css"/>
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/img/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/img/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-config" content="/img/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
 </head>
 <body>
   <header class="sheet-header">
@@ -13,7 +23,7 @@
     <div class="character-data">
       <input-group value="char.classes()" label="class"></input-group>
       <input-group value="char.level()" label="level"></input-group>
-      <input-group value="char.background" label="background"></input-group>
+      <input-group value="char.background.name" label="background"></input-group>
       <input-group value="char.player" label="player name"></input-group>
       <input-group value="char.race.name" label="race"></input-group>
       <input-group value="char.alignment_law+' '+char.alignment_good" label="alignment"></input-group>
@@ -149,14 +159,46 @@
       <div class="block filigre features-traits">
         <textarea ng-model="char.featuresTraits"></textarea>
         <h4 class="block-title">FEATURES & TRAITS</h4>
+      </div>
+      <div class="block filigre abilities">
+        <h3 ng-repeat="ability in char.abilities" title="{{ability.description}}">{{ability.name}}</h3>
+        <h4 class="block-title">Abilities</h4>
+      </div>
+      <div class="block filigre proficiencies">
+        <div class="set">
+          <h4>Weapons</h4>
+          <ul>
+            <li ng-repeat="proficiency in char.proficiencies('weapon')">{{proficiency.name}}</li>
+          </ul>
+        </div>
+        <div class="set">
+          <h4>Armor</h4>
+          <ul>
+            <li ng-repeat="proficiency in char.proficiencies('armor')">{{proficiency.name}}</li>
+          </ul>
+        </div>
+        <div class="set">
+        <h4>Tools</h4>
+        <ul>
+          <li ng-repeat="proficiency in char.proficiencies('tool')">{{proficiency.name}}</li>
+        </ul>
+        </div>
+        <h4 class="block-title">PROFICIENCIES</h4>
+      </div>
+      <div class="block filigre languages">
+        <ul>
+          <li ng-repeat="language in char.languages">{{language.name}}</li>
+        </ul>
+        <h4 class="block-title">LANGUAGES</h4>
+      </div>
     </div>
   </div>
   <script type="text/javascript" src="/js/angular.min.js"></script>
   <script type="text/javascript" src="/js/angular-route.min.js"></script>
   <script src="/js/app.js"></script>
   <script src="/js/services.js"></script>
-  <script src="/js/controllers.js"></script>
   <script src="/js/directives.js"></script>
+  <script src="/js/controllers.js"></script>
   <!-- <script src="/js/filters.js"></script> -->
 </body>
 </html>
