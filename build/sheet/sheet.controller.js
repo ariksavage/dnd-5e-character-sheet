@@ -5,7 +5,7 @@
     $scope.char = character;
     $scope.game = game;
     character.load(1);
-    $scope.mode = 'inventory';
+    $scope.mode = 'all';
     $scope.modes = ['all', 'combat', 'social', 'character', 'inventory'];
     $scope.setMode = function(m) {
       $scope.mode = m;

@@ -1,3 +1,21 @@
+
+
+.sheet-main {
+  display: grid;
+  grid-gap: 2em;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-repeat: auto-fit;
+  grid-auto-flow: dense;
+  background: $color--darken;
+}
+
+.skills {
+  grid-row: span 2;
+  grid-column: 1;
+  font-size: .7em;
+}
+
 .inspiration {
   .input {
     @extend %filigre-square;
@@ -11,185 +29,40 @@
   }
 }
 
-.sheet-main {
-  columns: 3 300px;
-  column-gap: 20px;
-  column-fill: balance;
-}
-
-.dot {
-  font-size: 1em;
-
-  &.inline {
-    display: inline-block;
-
-    +.inline {
-      margin-left: 1ex;
-    }
-  }
-
-  .check {
-    display: none;
-
-    &:checked {
-      + .bubble {
-        background: $color--black;
-      }
-    }
-  }
-
-  .bubble {
-    display: inline-block;
-    width: .5em;
-    height: .5em;
-    margin: .5em;
-    border: 1px solid $color--black;
-    border-radius: 100%;
-  }
-
-  &.expertise {
-    .bubble {
-      position: relative;
-      border: 1px solid $color--white;
-
-      &::after {
-        position: absolute;
-        content: '';
-        top: -2px;
-        left: -2px;
-        z-index: -1;
-        width: calc(.5em + 4px);
-        height: calc(.5em + 4px);
-        border-radius: 100%;
-        background: $color--black;
-      }
-    }
-  }
-}
-
-%skill-stat-row {
-  vertical-align: middle;
-
-  &:nth-of-type(even) {
-    background: $color--darken;
-  }
-
-  .dot {
-    width: 10%;
-    text-align: center;
-  }
-
-  .value {
-    width: 20%;
-    border-bottom: 1px solid $color--black;
-    text-align: center;
-  }
-
-  .name {
-    width: 70%;
-    padding: 0 1em;
-    text-transform: uppercase;
-  }
-}
-
-.saving-throw {
-  @extend %skill-stat-row;
-}
-
-.skill {
-  @extend %skill-stat-row;
-
-  .skill-stat {
-    color: $color--slate-gray;
-  }
-}
-
-.proficiencies {
-
-  .set {
-    display: inline-block;
-    vertical-align: top;
-    margin-bottom: 1em;
-  }
-
-  .block-title {
-    column-span: all;
-  }
-}
-
-.filters {
-  display: inline-block;
-  position: fixed;
-  top: 1ex;
-  right: 1ex;
-  z-index: 10;
-  width: auto;
-  margin: 1em;
-  border-radius: 1em;
-  background: $color--white;
-  font-size: .8em;
-
-  .radio {
-    display: inline-block;
-    padding: .5em 1em;
-    background: $color--darken;
-    box-shadow: 0 0 2px $color--black;
-    transition: background .2s, box-shadow .2s, color .2s;
-
-    &:first-of-type {
-      border-bottom-left-radius: 1em;
-      border-top-left-radius: 1em;
-    }
-
-    &:last-of-type {
-      border-top-right-radius: 1em;
-      border-bottom-right-radius: 1em;
-    }
-
-    &.active {
-      background: $color--half-black;
-      box-shadow: 0 0 0 $color--black;
-      color: $color--white;
-    }
-  }
-}
-
-.death-saves {
-  .saves {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-  }
-
-  label {
-    flex: 3 0 30%;
-  }
-
-  .dot {
-    flex: 1 0 10%;
-  }
-}
-
-.row {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
+.portrait {
+  grid-row: 1;
+  grid-column: 1;
 }
 
 .character-image {
+  grid-row: 1;
+  grid-column: 1;
+
   img {
     position: absolute;
-    width: 100%;
     top: 50%;
     left: 50%;
+    width: 100%;
     transform: translate(-50%, -50%);
   }
+
   &.portrait {
     .block-inner {
       position: relative;
       padding-bottom: 100%;
     }
   }
+}
+
+.alt-stats {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.attacks-spellcasting {
+  grid-column: 2 / span 3;
+}
+
+.inventory {
+  grid-column: 1 / span 4;
 }

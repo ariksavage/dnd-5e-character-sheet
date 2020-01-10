@@ -61,10 +61,6 @@
         </tbody>
       </table>
     </block>
-    <div class="row" ng-if="isMode('social')">
-      <input-group class="inspiration horizontal" value="char.inspiration" label="Inspiration"></input-group>
-      <input-group class="proficiency horizontal" value="char.proficiency" label="Proficiency Bonus"></input-group>
-    </div>
     <block title="Saving Throws" class="saving-throws" ng-if="isMode('social')">
       <table>
         <tbody>
@@ -123,10 +119,14 @@
         </tbody>
       </table>
     </block>
-    <div class="row ac-init-speed" ng-if="isMode('combat')">
-      <input-group class="inline armor-class filigre-shield" value="char.armorClass()" label="Armor Class"></input-group>
-      <input-group class="inline initiative filigre-square" value="char.initiative" label="Initiative"></input-group>
-      <input-group class="inline speed filigre-square" value="char.race.speed" label="Speed"></input-group>
+    <div class="alt-stats" ng-if="isMode('combat')">
+      <input-group class="inspiration horizontal" value="char.inspiration" label="Inspiration"></input-group>
+      <input-group class="proficiency horizontal" value="char.proficiency" label="Proficiency Bonus"></input-group>
+      <div class="row">
+        <input-group class="inline armor-class filigre-shield" value="char.armorClass()" label="Armor Class"></input-group>
+        <input-group class="inline initiative filigre-square" value="char.initiative" label="Initiative"></input-group>
+        <input-group class="inline speed filigre-square" value="char.race.speed" label="Speed"></input-group>
+      </div>
     </div>
     <block title="Hit Points" class="hit-points" ng-if="isMode('combat')">
       <p>Hit point maximum: <input type="number" ng-model="char.hp_max"/></p>
@@ -169,9 +169,6 @@
           </div>
       </div>
     </block>
-    <block title="Features & Traits" class="features-traits" ng-if="isMode('combat')">
-      <textarea ng-model="char.featuresTraits"></textarea>
-    </block>
     <block title="Abilities" class="abilities" ng-if="isMode('combat')">
       <h3 ng-repeat="ability in char.abilities" title="{{ability.description}}">{{ability.name}}</h3>
     </block>
@@ -213,15 +210,17 @@
         </select>
       </div>
     </block>
-    <table ng-if="isMode('inventory')">
-      <tbody>
-        <tr ng-repeat="item in char.inventory">
-          <td>{{item.name}}</td>
-          <td>{{item.description}}</td>
-          <td>{{item.qty}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <block title="inventory" class="inventory" ng-if="isMode('inventory')">
+      <table>
+        <tbody>
+          <tr ng-repeat="item in char.inventory">
+            <td>{{item.name}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.qty}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </block>
     
   </main>
   <script type="text/javascript" src="/js/angular.min.js"></script>

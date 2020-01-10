@@ -32,12 +32,13 @@ textarea {
 }
 
 table {
-  width: 100%;
   column-span: all;
+  width: 100%;
   border-collapse: collapse;
   font-size: 1em;
+
   td {
     padding: .5em;
-    border: 1px solid #000;
+    border: 1px solid $color-border;
   }
 }

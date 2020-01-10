@@ -3,33 +3,10 @@
   position: relative;
   width: 100%;
   padding: 3px;
-  margin-bottom: 1em;
-  border-top: 1px solid $color--black;
-  border-bottom: 1px solid $color--black;
+  border: 2px solid $color--black;
+  background: $color--white;
   transform-origin: top;
   transition: padding 1s;
-
-  &::before {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: -10px;
-    width: 15px;
-    height: 100%;
-    border-right: 3px solid $color--black;
-    border-radius: 100%;
-  }
-
-  &::after {
-    position: absolute;
-    content: '';
-    top: 0;
-    right: -10px;
-    width: 15px;
-    height: 100%;
-    border-left: 3px solid $color--black;
-    border-radius: 100%;
-  }
 
   .block-inner {
     display: block;

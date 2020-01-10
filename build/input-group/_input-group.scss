@@ -49,7 +49,9 @@
 
   &.horizontal {
     display: flex;
+    column-span: all;
     align-items: center;
+    width: 100%;
     margin: 0 0 1em;
     border: 0;
 
