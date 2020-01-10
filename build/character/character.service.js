@@ -137,6 +137,52 @@
       }
       return prof;
     }
+    service.inventoryByType = function(type){
+      if(service.inventory){
+        return service.inventory.filter(item => {
+          return item.type.toLowerCase().indexOf(type.toLowerCase()) > -1;
+        });
+      }else {
+        return [];
+      }
+    }
+    service.armorClothing = function(){
+      let items = [];
+      if(service.inventory){
+        items = items.concat(service.inventoryByType('armor'));
+        items = items.concat(service.inventoryByType('adventuring gear'));
+        return items;
+      }else {
+        return [];
+      }
+    }
+    service.equipSlots = function(){
+      if(service.inventory){
+      let slots = Object.getOwnPropertyNames(service.equipment);
+      slots = slots.filter(slot => {
+        return !(slot.indexOf('left') > -1 || slot.indexOf('right') > -1 || slot.indexOf('both') > -1);
+      });
+      return slots;
+    } else {
+      return [];
+    }
+    }
+    service.itemsBySlot = function(slot){
+      if(service.inventory){
+        return service.inventory.filter(item => {
+          if(!item.equip_slot){
+            return false;
+          } else {
+            return item.equip_slot.toLowerCase().indexOf(slot.toLowerCase()) > -1;
+          }
+        });
+      }else {
+        return [];
+      }
+    }
+    service.weapons = function(){
+      return service.inventoryByType('weapon');
+    }
 
     service.load = function(id) {
       return api.get('character', 'get', id).then(
@@ -151,7 +197,37 @@
               }
               api.get('items','characterInventory',id).then( response => {
                 character.inventory = response.data;
+                character.equipment = {
+                  head: null,
+                  neck: null,
+                  torso: null,
+                  back: null,
+                  legs: null,
+                  feet: null,
+                  both_hands: null,
+                  left_hand: null,
+                  left_finger1: null,
+                  left_finger2: null,
+                  left_finger3: null,
+                  left_finger4: null,
+                  left_finger5: null,
+                  right_hand: null,
+                  right_finger1: null,
+                  right_finger2: null,
+                  right_finger3: null,
+                  right_finger4: null,
+                  right_finger5: null
+                }
+                console.log('equip things');
+                
                 angular.merge(service, character);
+                service.inventory.forEach(item => {
+                  
+                  if (item.equipped){
+                    service.equipment[item.equipped] = item;
+                  }
+                });
+                console.log('equipment', service.equipment);
               });
             });
           });

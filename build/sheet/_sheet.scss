@@ -177,3 +177,19 @@
   justify-content: space-around;
   margin-bottom: 20px;
 }
+
+.character-image {
+  img {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &.portrait {
+    .block-inner {
+      position: relative;
+      padding-bottom: 100%;
+    }
+  }
+}

@@ -14,7 +14,7 @@ Class Items extends API {
   public function characterInventory($id, $silent = false){
     // select items.*, pc_inventory.qty from items left join pc_inventory on items.id = pc_inventory.item_id where pc_inventory.`pc_id` = 1
     $where = NULL;
-    $what = "items.*, pc_inventory.qty";
+    $what = "items.*, pc_inventory.qty, pc_inventory.equipped";
     $join = " LEFT JOIN pc_inventory on items.id = pc_inventory.item_id";
     $order = "items.name";
     $where = " pc_inventory.pc_id = $id";

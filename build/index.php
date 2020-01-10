@@ -40,11 +40,15 @@
       <input-group value="char.deity" label="deity"></input-group>
     </div>
   </header>
+    
   <div class="stats">
     <stat-block ng-repeat="stat in game.stats" name="stat" value="char.stat(stat).value"></stat-block>
   </div>
-  <main class="sheet-main social" ng-if="isMode('social')">
-    <block title="Skills" class="skills">
+  <main class="sheet-main">
+    <block title="portrait" class="character-image portrait">
+      <img ng-src="{{char.image_face}}"/>
+    </block>
+    <block title="Skills" class="skills" ng-if="isMode('social')">
       <table>
         <tbody>
           <tr class="skill" ng-repeat="skill in char.skills">
@@ -57,11 +61,11 @@
         </tbody>
       </table>
     </block>
-    <div class="row">
+    <div class="row" ng-if="isMode('social')">
       <input-group class="inspiration horizontal" value="char.inspiration" label="Inspiration"></input-group>
       <input-group class="proficiency horizontal" value="char.proficiency" label="Proficiency Bonus"></input-group>
     </div>
-    <block title="Saving Throws" class="saving-throws">
+    <block title="Saving Throws" class="saving-throws" ng-if="isMode('social')">
       <table>
         <tbody>
           <tr class="saving-throw" ng-repeat="stat in game.stats">
@@ -74,14 +78,12 @@
         </tbody>
       </table>
     </block>
-    <block title="Languages" class="languages"  ng-if="isMode('social')">
+    <block title="Languages" class="languages"  ng-if="isMode('social')" ng-if="isMode('social')">
       <ul>
         <li ng-repeat="language in char.languages">{{language.name}}</li>
       </ul>
     </block>
-  </main>
-  <main class="sheet-main combat" ng-if="isMode('combat')">
-    <block title="Proficiencies" class="proficiencies two-col">
+    <block title="Proficiencies" class="proficiencies two-col" ng-if="isMode('combat')">
       <div class="set">
         <h4>Weapons</h4>
         <ul>
@@ -101,39 +103,41 @@
       </ul>
       </div>
     </block>
-    <block title="Attacks & Spellcasting" class="attacks-spellcasting" >
+    <block title="Attacks & Spellcasting" class="attacks-spellcasting" ng-if="isMode('combat')">
       <table>
         <thead>
           <tr>
+            <td>Proficiency</td>
             <td>Name</td>
             <td>Attack Bonus</td>
             <td> Damage/Type</td>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="a in char.attacks" class="attack">
+          <tr ng-repeat="a in char.weapons()" class="attack">
+            <td class="proficiency"><buuble></buuble></td>
             <td class="name">{{a.name}}</td>
-            <td class="bonus" >{{a.atkBonus}}</td>
-            <td class="type">{{a.damageType}}</td>
+            <td class="bonus" >{{a.damage_dice}}d{{a.damage_sides}}</td>
+            <td class="type">{{a.damage_type}}</td>
           </tr>
         </tbody>
       </table>
     </block>
-    <div class="row ac-init-speed">
+    <div class="row ac-init-speed" ng-if="isMode('combat')">
       <input-group class="inline armor-class filigre-shield" value="char.armorClass()" label="Armor Class"></input-group>
       <input-group class="inline initiative filigre-square" value="char.initiative" label="Initiative"></input-group>
       <input-group class="inline speed filigre-square" value="char.race.speed" label="Speed"></input-group>
     </div>
-    <block title="Hit Points" class="hit-points" >
+    <block title="Hit Points" class="hit-points" ng-if="isMode('combat')">
       <p>Hit point maximum: <input type="number" ng-model="char.hp_max"/></p>
       <p>Current Hit points: <input type="number" ng-model="char.hp"/></p>
       <p>Temporary HP: <input type="number" ng-model="char.hp"/></p>
     </block>
-    <block title="Hit Dice" class="hit-dice" >
+    <block title="Hit Dice" class="hit-dice" ng-if="isMode('combat')">
       <p>Total: {{char.hp_max}}</p>
       <p>{{char.hitDice()}}</p>
     </block>
-    <block title="Death Saves" class="death-saves">
+    <block title="Death Saves" class="death-saves" ng-if="isMode('combat')">
       <div class="success saves">
         <label>Successes:</label>
         <div class="inline dot">
@@ -165,29 +169,51 @@
           </div>
       </div>
     </block>
-    <block title="Features & Traits" class="features-traits" >
+    <block title="Features & Traits" class="features-traits" ng-if="isMode('combat')">
       <textarea ng-model="char.featuresTraits"></textarea>
     </block>
-    <block title="Abilities" class="abilities">
+    <block title="Abilities" class="abilities" ng-if="isMode('combat')">
       <h3 ng-repeat="ability in char.abilities" title="{{ability.description}}">{{ability.name}}</h3>
     </block>
-  </main>
-  <main class="sheet-main character" ng-if="isMode('character')">
-    <block title="Personality Traits" class="personality-traits" ng-if="isMode('character')">
+    <block title="Personality Traits" class="personality-traits" ng-if="isMode('character')" ng-if="isMode('character')">
       <textarea ng-model="char.personalityTraits"></textarea>
     </block>
-    <block title="Ideals" class="ideals">
+    <block title="Ideals" class="ideals" ng-if="isMode('character')">
       <textarea ng-model="char.ideals"></textarea>
     </block>
-    <block title="Bonds" class="bonds">
+    <block title="Bonds" class="bonds" ng-if="isMode('character')">
       <textarea ng-model="char.bonds"></textarea>
     </block>
-    <block title="Flaws" class="flaws">
+    <block title="Flaws" class="flaws" ng-if="isMode('character')">
       <textarea ng-model="char.flaws"></textarea>
     </block>
-  </main>
-  <main class="sheet-main character" ng-if="isMode('inventory')">
-    <table>
+    <block title="equipment" ng-if="isMode('inventory')">
+      <div ng-repeat="slot in char.equipSlots()" class="slot {{slot}}">
+        {{slot.toUpperCase().replace('_',' ')}} 
+        <select ng-model="char.equipment[slot]" ng-options="item.name for item in char.itemsBySlot(slot)">
+          <option value="">- {{slot}} -</option>
+        </select>
+      </div>
+      <div class="slot hand two" ng-if="!char.equipment.left_hand && !char.equipment.right_hand">
+        TWO HAND
+        <select ng-model="char.equipment.both_hands" ng-options="item.name for item in char.itemsBySlot('two-hand')">
+          <option value="">- two hands -</option>
+        </select>
+      </div>
+      <div class="slot hand left" ng-if="!char.equipment.both_hands">
+        LEFT HAND
+        <select ng-model="char.equipment.left_hand" ng-options="item.name for item in char.itemsBySlot('one-hand')">
+          <option value="">- left hand -</option>
+        </select>
+      </div>
+      <div class="slot hand right" ng-if="!char.equipment.both_hands">
+        RIGHT HAND
+        <select ng-model="char.equipment.right_hand" ng-options="item.name for item in char.itemsBySlot('one-hand')">
+          <option value="">- right hand -</option>
+        </select>
+      </div>
+    </block>
+    <table ng-if="isMode('inventory')">
       <tbody>
         <tr ng-repeat="item in char.inventory">
           <td>{{item.name}}</td>
@@ -196,6 +222,7 @@
         </tr>
       </tbody>
     </table>
+    
   </main>
   <script type="text/javascript" src="/js/angular.min.js"></script>
   <script type="text/javascript" src="/js/angular-route.min.js"></script>
