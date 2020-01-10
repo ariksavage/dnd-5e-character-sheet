@@ -1,0 +1,27 @@
+.bubble {
+  display: inline-block;
+  position: relative;
+  width: .5em;
+  height: .5em;
+  margin: .25em 1ex;
+  border: 1px solid $color--black;
+  border-radius: 100%;
+
+  &.fill {
+    background: $color--black;
+  }
+
+  &.ring {
+    &::after {
+      position: absolute;
+      content: '';
+      top: 50%;
+      left: 50%;
+      width: 1em;
+      height: 1em;
+      border: 1px solid $color--black;
+      border-radius: 100%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

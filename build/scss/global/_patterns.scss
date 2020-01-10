@@ -1,34 +1,13 @@
-%horizontal-input {
-  display: flex;
-  align-items: center;
-  width: 20vw;
-  margin: 0 0 1em;
-
-  .input {
-    position: relative;
-    appearance: none;
-    z-index: 5;
-    flex: 0 1 3em;
-    height: 3em;
-    border: 3px solid $color--black;
-    text-align: center;
-  }
-
-  .label {
-    flex: 1 0 60%;
-    padding: .2em 2em;
-    border: 1px double $color--black;
-    border-left: 0;
-    text-align: center;
-  }
+%filigre-circle {
+  @include background-image-cover('/img/circle-filigre.svg');
+  background-position: center;
 }
 
 %filigre-square {
   @include background-image-cover('/img/square-filigre.svg');
   background-position: center;
-
 }
 
 %filigre-shield {
-  @include background-image-cover('/img/ac-frame.svg');
+  @include background-image-cover('/img/shield-filigre.svg');
 }

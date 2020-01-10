@@ -24,3 +24,15 @@ select {
   border-radius: 0;
   background: transparent;
 }
+
+textarea {
+  appearance: none;
+  width: 100%;
+  border: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1em;
+}

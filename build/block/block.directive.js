@@ -4,7 +4,7 @@
   function blockDirective() {
     return {
       restrict: 'E',
-      replace: false,
+      replace: true,
       transclude: true,
       scope: {
         title: '@',

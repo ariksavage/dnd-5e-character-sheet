@@ -16,6 +16,11 @@
   <meta name="theme-color" content="#ffffff">
 </head>
 <body>
+  <div class="filters">
+    <div class="radio" ng-repeat="m in modes" ng-click="setMode(m)" ng-class="{'active': m == mode}">
+      {{m}}
+    </div>
+  </div>
   <header class="sheet-header">
     <div class="character-name">
       <input-group value="char.name" label="character name"></input-group>
@@ -38,32 +43,30 @@
   <div class="stats">
     <stat-block ng-repeat="stat in game.stats" name="stat" value="char.stat(stat).value"></stat-block>
   </div>
-  <main class="sheet-main">
+  <main class="sheet-main social" ng-if="isMode('social')">
     <block title="Skills" class="skills">
-          <table>
-            <tbody>
-              <tr class="skill" ng-repeat="skill in char.skills">
-                <td class="dot" ng-class="{'expertise': skill.expertise}">
-                  <input class="check" type="checkbox" ng-checked="skill.proficiency || skill.expertise"/>
-                  <span class="bubble"></span>
-                </td>
-                <td class="value"> {{char.stat(skill.stat).value}}</td>
-                <td class="name"> {{skill.name}} <span class="skill-stat">({{skill.stat}})</span></td>
-              </tr>
-            </tbody>
-          </table>
+      <table>
+        <tbody>
+          <tr class="skill" ng-repeat="skill in char.skills">
+            <td>
+              <bubble fill="skill.proficiency" ring="skill.expertise"></bubble>
+            </td>
+            <td class="value"> {{char.stat(skill.stat).value}}</td>
+            <td class="name"> {{skill.name}} <span class="skill-stat">({{skill.stat}})</span></td>
+          </tr>
+        </tbody>
+      </table>
     </block>
-    <div>
-      <input-group class="inspiration" value="char.inspiration" label="Inspiration"></input-group>
-      <input-group class="proficiency" value="char.proficiency" label="Proficiency Bonus"></input-group>
+    <div class="row">
+      <input-group class="inspiration horizontal" value="char.inspiration" label="Inspiration"></input-group>
+      <input-group class="proficiency horizontal" value="char.proficiency" label="Proficiency Bonus"></input-group>
     </div>
     <block title="Saving Throws" class="saving-throws">
       <table>
         <tbody>
           <tr class="saving-throw" ng-repeat="stat in game.stats">
-            <td class="dot">
-              <input class="check" type="checkbox" ng-checked="char.savingThrows().indexOf(stat.slice(0, 3).toLowerCase()) > -1"/>
-              <span class="bubble"></span>
+            <td>
+              <bubble fill="char.savingThrows().indexOf(stat.slice(0, 3).toLowerCase()) > -1"></bubble>
             </td>
             <td class="value">{{char.stat(stat).value}}</td>
             <td class="name">{{stat}}</td>
@@ -71,88 +74,14 @@
         </tbody>
       </table>
     </block>
-      
-    <div class="row ac-init-speed">
-      <input-group class="inline armor-class filigre-shield" value="char.armorClass()" label="Armor Class"></input-group>
-      <input-group class="inline initiative filigre-square" value="char.initiative" label="Initiative"></input-group>
-      <input-group class="inline speed filigre-square" value="char.race.speed" label="Speed"></input-group>
-    </div>
-    <block title="Hit Points" class="hit-points">
-      <p>Hit point maximum: <input type="number" ng-model="char.hp_max"/></p>
-      <p>Current Hit points: <input type="number" ng-model="char.hp"/></p>
-      <p>Temporary HP: <input type="number" ng-model="char.hp"/></p>
+    <block title="Languages" class="languages"  ng-if="isMode('social')">
+      <ul>
+        <li ng-repeat="language in char.languages">{{language.name}}</li>
+      </ul>
     </block>
-    <block title="Hit Dice" class="hit-dice">
-      <p>Total: {{char.hp_max}}</p>
-      <p>{{char.hitDice()}}</p>
-    </block>
-    <block title="Death Saves" class="death-saves">
-      <p>Successes: 
-        <div class="inline dot">
-          <input class="check" type="checkbox" ng-checked="char.death_save_success > 0"/>
-          <span class="bubble"></span>
-        </div>
-        <div class="inline dot">
-          <input class="check" type="checkbox" ng-checked="char.death_save_success > 1"/>
-          <span class="bubble"></span>
-        </div>
-        <div class="inline dot">
-          <input class="check" type="checkbox" ng-checked="char.death_save_success > 2"/>
-          <span class="bubble"></span>
-        </div>
-      </p>
-      <p>Failures: 
-        <div class="inline dot">
-          <input class="check" type="checkbox" ng-checked="char.death_save_failure > 0"/>
-          <span class="bubble"></span>
-        </div>
-        <div class="inline dot">
-          <input class="check" type="checkbox" ng-checked="char.death_save_failure > 1"/>
-          <span class="bubble"></span>
-        </div>
-        <div class="inline dot">
-          <input class="check" type="checkbox" ng-checked="char.death_save_failure > 2"/>
-          <span class="bubble"></span>
-        </div>
-      </p>
-    </block>
-    <block title="Attacks & Spellcasting" class="attacks-spellcasting">
-      <table>
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Attack Bonus</td>
-            <td> Damage/Type</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="a in char.attacks" class="attack">
-            <td class="name">{{a.name}}</td>
-            <td class="bonus" >{{a.atkBonus}}</td>
-            <td class="type">{{a.damageType}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </block>
-    <block title="Personality Traits" class="personality-traits">
-      <textarea ng-model="char.personalityTraits"></textarea>
-    </block>
-    <block title="Ideals" class="ideals">
-      <textarea ng-model="char.ideals"></textarea>
-    </block>
-    <block title="Bonds" class="bonds">
-      <textarea ng-model="char.bonds"></textarea>
-    </block>
-    <block title="Flaws" class="flaws">
-      <textarea ng-model="char.flaws"></textarea>
-    </block>
-    <block title="Features & Traits" class="features-traits">
-      <textarea ng-model="char.featuresTraits"></textarea>
-    </block>
-    <block title="Abilities" class="abilities">
-      <h3 ng-repeat="ability in char.abilities" title="{{ability.description}}">{{ability.name}}</h3>
-    </block>
-    <block title="Proficiencies" class="proficiencies">
+  </main>
+  <main class="sheet-main combat" ng-if="isMode('combat')">
+    <block title="Proficiencies" class="proficiencies two-col">
       <div class="set">
         <h4>Weapons</h4>
         <ul>
@@ -172,13 +101,91 @@
       </ul>
       </div>
     </block>
-    <block title="Languages" class="languages">
-      <ul>
-        <li ng-repeat="language in char.languages">{{language.name}}</li>
-      </ul>
+    <block title="Attacks & Spellcasting" class="attacks-spellcasting" >
+      <table>
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Attack Bonus</td>
+            <td> Damage/Type</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="a in char.attacks" class="attack">
+            <td class="name">{{a.name}}</td>
+            <td class="bonus" >{{a.atkBonus}}</td>
+            <td class="type">{{a.damageType}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </block>
+    <div class="row ac-init-speed">
+      <input-group class="inline armor-class filigre-shield" value="char.armorClass()" label="Armor Class"></input-group>
+      <input-group class="inline initiative filigre-square" value="char.initiative" label="Initiative"></input-group>
+      <input-group class="inline speed filigre-square" value="char.race.speed" label="Speed"></input-group>
+    </div>
+    <block title="Hit Points" class="hit-points" >
+      <p>Hit point maximum: <input type="number" ng-model="char.hp_max"/></p>
+      <p>Current Hit points: <input type="number" ng-model="char.hp"/></p>
+      <p>Temporary HP: <input type="number" ng-model="char.hp"/></p>
+    </block>
+    <block title="Hit Dice" class="hit-dice" >
+      <p>Total: {{char.hp_max}}</p>
+      <p>{{char.hitDice()}}</p>
+    </block>
+    <block title="Death Saves" class="death-saves">
+      <div class="success saves">
+        <label>Successes:</label>
+        <div class="inline dot">
+          <input class="check" type="checkbox" ng-checked="char.death_save_success > 0"/>
+          <span class="bubble"></span>
+        </div>
+        <div class="inline dot">
+          <input class="check" type="checkbox" ng-checked="char.death_save_success > 1"/>
+          <span class="bubble"></span>
+        </div>
+        <div class="inline dot">
+          <input class="check" type="checkbox" ng-checked="char.death_save_success > 2"/>
+          <span class="bubble"></span>
+        </div>
+      </div>
+      <div class="failure saves">
+        <label>Failures:</label>
+          <div class="inline dot">
+            <input class="check" type="checkbox" ng-checked="char.death_save_failure > 0"/>
+            <span class="bubble"></span>
+          </div>
+          <div class="inline dot">
+            <input class="check" type="checkbox" ng-checked="char.death_save_failure > 1"/>
+            <span class="bubble"></span>
+          </div>
+          <div class="inline dot">
+            <input class="check" type="checkbox" ng-checked="char.death_save_failure > 2"/>
+            <span class="bubble"></span>
+          </div>
+      </div>
+    </block>
+    <block title="Features & Traits" class="features-traits" >
+      <textarea ng-model="char.featuresTraits"></textarea>
+    </block>
+    <block title="Abilities" class="abilities">
+      <h3 ng-repeat="ability in char.abilities" title="{{ability.description}}">{{ability.name}}</h3>
     </block>
   </main>
-
+  <main class="sheet-main character" ng-if="isMode('character')">
+    <block title="Personality Traits" class="personality-traits" ng-if="isMode('character')">
+      <textarea ng-model="char.personalityTraits"></textarea>
+    </block>
+    <block title="Ideals" class="ideals">
+      <textarea ng-model="char.ideals"></textarea>
+    </block>
+    <block title="Bonds" class="bonds">
+      <textarea ng-model="char.bonds"></textarea>
+    </block>
+    <block title="Flaws" class="flaws">
+      <textarea ng-model="char.flaws"></textarea>
+    </block>
+  </main>
   <script type="text/javascript" src="/js/angular.min.js"></script>
   <script type="text/javascript" src="/js/angular-route.min.js"></script>
   <script src="/js/app.js"></script>

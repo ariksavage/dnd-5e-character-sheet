@@ -5,6 +5,14 @@
     $scope.char = character;
     $scope.game = game;
     character.load(1);
+    $scope.mode = 'all';
+    $scope.modes = ['all', 'combat', 'social', 'character'];
+    $scope.setMode = function(m) {
+      $scope.mode = m;
+    }
+    $scope.isMode = function(m){
+      return $scope.mode == 'all' || $scope.mode == m;
+    }
   }
 
   const dependencies = ['$scope'];
