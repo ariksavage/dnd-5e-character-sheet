@@ -1,4 +1,17 @@
 .input-group {
+
+  &.filigre-square {
+    .input {
+      @extend %filigre-square;
+    }
+  }
+
+  &.filigre-shield {
+    .input {
+      @extend %filigre-shield;
+    }
+  }
+
   .input {
     float: left;
     appearance: none;

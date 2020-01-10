@@ -76,7 +76,7 @@ Object.assign(angularApp, {displayName: "JS: Angular: App"});
 gulp.task( angularApp );
 
 const angularTemplates = function() {
-  return angularModule.templates(paths.src, destRoot);
+  return angularModule.templates(paths.src, paths.templates.dest);
 }
 Object.assign(angularTemplates, {displayName: "JS: Angular: Templates"});
 gulp.task( angularTemplates );

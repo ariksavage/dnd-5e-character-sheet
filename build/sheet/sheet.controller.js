@@ -1,22 +1,15 @@
 (function() {
   'use strict';
 
-  function sheetController($scope, $location, character) {
+  function sheetController($scope, $location, game, character) {
     $scope.char = character;
+    $scope.game = game;
     character.load(1);
-    //test
-    $scope.stats = [
-      'Charisma',
-      'Constitution',
-      'Dexterity',
-      'Intelligence',
-      'Strength',
-      'Wisdom'
-    ];
   }
 
   const dependencies = ['$scope'];
   dependencies.push('$location');
+  dependencies.push('game');
   dependencies.push('character');
   dependencies.push(sheetController);
   app.controller('sheetCtrl', dependencies);

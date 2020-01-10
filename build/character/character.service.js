@@ -105,24 +105,16 @@
       }
       return ac;
     }
-
-    service.load = function(id) {
-      return api.get('character', 'get', id).then(
-      response => {
-        const character = response.data;
-        api.get('job','getJobsByPC',id).then( response => {
-          character.jobs = response.data;
-        });
-        
-        race.load(character.race).then( response => {
-          character.race = angular.copy(race);
-          for (let i=0; i<race.abilities.length; i++){
-            character.abilities.push(race.abilities[i]);
-          }
-          angular.merge(service, character);
+    service.savingThrows = function(){
+      const throws = [];
+      if(service.jobs){
+        service.jobs.forEach(job => {
+          throws.push(job.saving_throw_prof_1);
+          throws.push(job.saving_throw_prof_2);
         });
       }
-    )}
+      return throws;
+    }
     service.proficiencies = function(type = null) {
       const prof = [];
 
@@ -146,6 +138,24 @@
       return prof;
     }
 
+    service.load = function(id) {
+      return api.get('character', 'get', id).then(
+        response => {
+          const character = response.data;
+          api.get('job','getJobsByPC',id).then( response => {
+            character.jobs = response.data;
+            race.load(character.race).then( response => {
+              character.race = angular.copy(race);
+              for (let i=0; i<race.abilities.length; i++){
+                character.abilities.push(race.abilities[i]);
+              }
+              angular.merge(service, character);
+            });
+          });
+        }
+      )
+    }
+    
     return service;
   }
 

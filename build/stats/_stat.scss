@@ -1,12 +1,8 @@
 .stats {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 100vh;
-
-  &.column {
-    flex: 0 1 10%;
-  }
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .stat {
@@ -43,15 +39,19 @@
   .name {
     float: left;
     width: 100%;
-    margin-bottom: .75em;
+    margin-bottom: .5em;
     font-size: .3em;
     text-transform: uppercase;
   }
 
   .bonus {
     float: left;
-    width: 100%;
+    width: 50%;
+    height: 1.3em;
+    margin: 0 25%;
+    border-radius: 100%;
     font-size: .8em;
+    line-height: 1.3;
     text-transform: uppercase;
   }
 }

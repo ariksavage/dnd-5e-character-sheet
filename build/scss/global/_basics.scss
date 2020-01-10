@@ -15,3 +15,12 @@ h5,
 p {
   margin: 0 0 .5em;
 }
+
+select {
+  appearance: none;
+  padding: 0 1ex;
+  border: 0;
+  border-bottom: 1px solid $color--black;
+  border-radius: 0;
+  background: transparent;
+}

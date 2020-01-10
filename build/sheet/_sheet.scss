@@ -1,39 +1,18 @@
-%horizontal-input {
-  display: flex;
-  align-items: center;
-  width: 20vw;
-  margin: 0 0 1em;
 
-  .input {
-    position: relative;
-    appearance: none;
-    z-index: 5;
-    flex: 0 1 3em;
-    height: 3em;
-    border: 3px solid $color--black;
-    background: $color--white;
-    text-align: center;
-  }
-
-  .label {
-    flex: 1 0 60%;
-    padding: .2em 2em;
-    margin-left: -1em;
-    border: 1px double $color--black;
-    border-style: double;
-    text-align: center;
-  }
-}
 
 .inspiration {
   @extend %horizontal-input;
+
+  .input {
+    @extend %filigre-shield;
+  }
 }
 
 .proficiency {
   @extend %horizontal-input;
 
   .input {
-    border-radius: 100%;
+    @extend %filigre-square;
   }
 }
 
@@ -50,10 +29,8 @@ textarea {
 }
 
 .sheet-main {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-around;
+  columns: 4 200px;
+  column-gap: 20px;
 }
 
 .row {
@@ -77,45 +54,6 @@ table {
   width: 100%;
   border-collapse: collapse;
   font-size: 1em;
-}
-
-.block {
-  width: 100%;
-  padding: 1em;
-  margin: 1em 0;
-  box-sizing: border-box;
-
-  &.filigre {
-    position: relative;
-
-    &::before {
-      position: absolute;
-      content: '';
-      top: -2%;
-      left: -2%;
-      z-index: -1;
-      width: 70%;
-      height: 104%;
-      background: url('/img/filigre-left.svg');
-      background-repeat: no-repeat;
-      background-position: top left;
-      background-size: auto 100%;
-    }
-
-    &::after {
-      position: absolute;
-      content: '';
-      top: -2%;
-      right: -2%;
-      z-index: -1;
-      width: 70%;
-      height: 104%;
-      background: url('/img/filigre-right.svg');
-      background-repeat: no-repeat;
-      background-position: top right;
-      background-size: auto 100%;
-    }
-  }
 }
 
 .dot {
@@ -202,60 +140,6 @@ table {
 
   .skill-stat {
     color: $color--slate-gray;
-  }
-}
-
-.armor-class {
-  position: relative;
-
-  &::after {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    background-image: url('/img/ac-frame.svg');
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: 100% auto;
-  }
-}
-
-.initiative {
-  position: relative;
-
-  &::after {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    background-image: url('/img/square-filigre.svg');
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: 100% auto;
-  }
-}
-
-.speed {
-  position: relative;
-
-  &::after {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    background-image: url('/img/square-filigre.svg');
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: 100% auto;
   }
 }
 

@@ -1,7 +1,12 @@
 @import 'global/colors';
 @import 'global/basics';
+@import 'global/mixins';
+@import 'global/patterns';
+
+@import '../block/block';
 @import '../stats/stat';
 @import '../input-group/input-group';
+@import '../sheet/sheet-header';
 @import '../sheet/sheet';
 
 @import 'header';
