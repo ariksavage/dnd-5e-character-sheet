@@ -149,7 +149,10 @@
               for (let i=0; i<race.abilities.length; i++){
                 character.abilities.push(race.abilities[i]);
               }
-              angular.merge(service, character);
+              api.get('items','characterInventory',id).then( response => {
+                character.inventory = response.data;
+                angular.merge(service, character);
+              });
             });
           });
         }

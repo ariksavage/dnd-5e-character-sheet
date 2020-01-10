@@ -12,6 +12,7 @@ require_once('./library/api.php');
 require_once('./library/race.php');
 require_once('./library/character.php');
 require_once('./library/job.php');
+require_once('./library/items.php');
 
 $db = new Database($user, $pass, $database);
 $db->debug = false;

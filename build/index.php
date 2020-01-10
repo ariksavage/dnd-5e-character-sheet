@@ -186,6 +186,17 @@
       <textarea ng-model="char.flaws"></textarea>
     </block>
   </main>
+  <main class="sheet-main character" ng-if="isMode('inventory')">
+    <table>
+      <tbody>
+        <tr ng-repeat="item in char.inventory">
+          <td>{{item.name}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.qty}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
   <script type="text/javascript" src="/js/angular.min.js"></script>
   <script type="text/javascript" src="/js/angular-route.min.js"></script>
   <script src="/js/app.js"></script>
