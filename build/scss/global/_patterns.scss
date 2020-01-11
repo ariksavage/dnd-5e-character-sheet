@@ -1,13 +1,21 @@
-%filigre-circle {
-  @include background-image-cover('/img/circle-filigre.svg');
-  background-position: center;
+%filigre-circle-input {
+  .input {
+    @include background-image-cover('/img/circle-filigre.svg');
+    position: relative;
+    z-index: 5;
+    background-position: center;
+  }
 }
 
-%filigre-square {
-  @include background-image-cover('/img/square-filigre.svg');
-  background-position: center;
+%filigre-square-input {
+  .input {
+    @include background-image-cover('/img/square-filigre.svg');
+    background-position: center;
+  }
 }
 
-%filigre-shield {
-  @include background-image-cover('/img/shield-filigre.svg');
+%filigre-shield-input {
+  .input {
+    @include background-image-cover('/img/shield-filigre.svg');
+  }
 }

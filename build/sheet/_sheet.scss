@@ -1,4 +1,7 @@
-
+.row {
+  display: flex;
+  justify-content: space-around;
+}
 
 .sheet-main {
   display: grid;
@@ -7,6 +10,7 @@
   grid-template-columns: repeat(auto-fill, 300px);
   grid-repeat: auto-fit;
   grid-auto-flow: dense;
+  padding: 2em 0;
   background: $color--darken;
 }
 
@@ -17,40 +21,24 @@
 }
 
 .inspiration {
-  .input {
-    @extend %filigre-square;
-    background-color: $color--white;
-  }
+  @extend %filigre-square-input;
 }
 
 .proficiency {
-  .input {
-    @extend %filigre-circle;
-  }
+  @extend %filigre-circle-input;
 }
 
 .portrait {
   grid-row: 1;
   grid-column: 1;
-}
+  padding: 0;
 
-.character-image {
-  grid-row: 1;
-  grid-column: 1;
-
-  img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    transform: translate(-50%, -50%);
+  .block-inner {
+    padding: 0;
   }
 
-  &.portrait {
-    .block-inner {
-      position: relative;
-      padding-bottom: 100%;
-    }
+  img {
+    width: 100%;
   }
 }
 

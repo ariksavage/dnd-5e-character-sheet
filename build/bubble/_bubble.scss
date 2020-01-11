@@ -4,7 +4,8 @@
   width: .5em;
   height: .5em;
   margin: .25em 1ex;
-  border: 1px solid $color--black;
+  border: 1px solid $color-border;
+
   border-radius: 100%;
 
   &.fill {
@@ -19,7 +20,8 @@
       left: 50%;
       width: 1em;
       height: 1em;
-      border: 1px solid $color--black;
+      border: 1px solid $color-border;
+
       border-radius: 100%;
       transform: translate(-50%, -50%);
     }

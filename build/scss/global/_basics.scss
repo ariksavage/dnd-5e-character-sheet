@@ -20,7 +20,8 @@ select {
   appearance: none;
   padding: 0 1ex;
   border: 0;
-  border-bottom: 1px solid $color--black;
+  border-bottom: 1px solid $color-border;
+
   border-radius: 0;
   background: transparent;
 }
@@ -29,6 +30,8 @@ textarea {
   appearance: none;
   width: 100%;
   border: 0;
+  background: transparent;
+  resize: no-resize;
 }
 
 table {

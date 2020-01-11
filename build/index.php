@@ -55,11 +55,12 @@
             <td>
               <bubble fill="skill.proficiency" ring="skill.expertise"></bubble>
             </td>
-            <td class="value"> {{char.stat(skill.stat).value}}</td>
+            <td class="value"> {{char.stat(skill.stat).bonus}}</td>
             <td class="name"> {{skill.name}} <span class="skill-stat">({{skill.stat}})</span></td>
           </tr>
         </tbody>
       </table>
+      <!-- non skill proficiencies -->
     </block>
     <block title="Saving Throws" class="saving-throws" ng-if="isMode('social')">
       <table>
